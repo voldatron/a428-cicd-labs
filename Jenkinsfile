@@ -18,9 +18,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)' 
                 sh './jenkins/scripts/deliver.sh'
                 echo "Deployment completed. Sleeping for 5 minutes..."
                 sleep time: 1, unit: 'MINUTES'
+                sh './jenkins/scripts/kill.sh' 
             }
         }
     }
